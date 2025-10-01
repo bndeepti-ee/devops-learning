@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import hello_world
+from app.routers import hello_world, health_check
 
 app = FastAPI(
     title="FastAPI API",
@@ -8,6 +8,7 @@ app = FastAPI(
 )
 
 app.include_router(hello_world.router)
+app.include_router(health_check.router)
 
 if __name__ == "__main__":
     import uvicorn
