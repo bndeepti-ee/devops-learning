@@ -47,28 +47,9 @@ These documentation pages are automatically generated based on your API routes a
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/hello` | GET | Returns a "Hello World" message |
+| `/health` | GET | Returns the health status of the application with a UTC timestamp |
 
 ## Development
-
-### Project Structure
-
-```
-.
-├── app/
-│   ├── __init__.py
-│   ├── main.py          # Application entry point
-│   └── routers/         # API route definitions
-│       ├── __init__.py
-│       └── hello_world.py
-├── tests/               # Test directory
-│   ├── __init__.py
-│   ├── test_main.py
-│   └── routers/
-│       ├── __init__.py
-│       └── test_hello_world.py
-├── requirements.txt     # Project dependencies
-└── README.md           # Project documentation
-```
 
 ### Running Tests
 
