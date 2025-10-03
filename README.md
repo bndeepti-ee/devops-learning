@@ -56,3 +56,47 @@ These documentation pages are automatically generated based on your API routes a
 ```
 pytest
 ```
+
+## Docker
+
+### Building the Docker Image
+
+You can build a Docker image for this application using the provided Dockerfile:
+
+```
+docker build -t fastapi-app .
+```
+
+### Running the Docker Container
+
+Once the image is built, you can run the application in a Docker container:
+
+```
+docker run -d -p 8000:8000 --name fastapi-container fastapi-app
+```
+
+This will:
+- Run the container in detached mode (`-d`)
+- Map port 8000 of the container to port 8000 on your host (`-p 8000:8000`)
+- Name the container "fastapi-container" (`--name fastapi-container`)
+- Use the "fastapi-app" image we built earlier
+
+### Accessing the Application
+
+The application will be accessible at `http://localhost:8000`, just like when running it directly with uvicorn.
+
+### Checking Container Logs
+
+You can view the logs from the container with:
+
+```
+docker logs fastapi-container
+```
+
+### Stopping the Container
+
+To stop and remove the container:
+
+```
+docker stop fastapi-container && docker rm fastapi-container
+```
