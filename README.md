@@ -100,3 +100,65 @@ To stop and remove the container:
 ```
 docker stop fastapi-container && docker rm fastapi-container
 ```
+
+## Kubernetes Deployment
+
+### Prerequisites
+
+- minikube
+- kubectl
+- docker
+
+### Deploying to Minikube
+
+1. **Start Minikube**:
+   ```
+   minikube start
+   ```
+
+2. **Build the Docker image**:
+   ```
+   docker build -t fastapi-app:latest .
+   ```
+
+3. **Apply the Kubernetes configurations**:
+   ```
+   kubectl apply -f k8s/
+   ```
+
+4. **Enable the Ingress addon in Minikube**:
+   ```
+   minikube addons enable ingress
+   ```
+
+5. **Add the hostname to your hosts file**:
+   
+   Add the following line to your `/etc/hosts` file:
+   ```
+   127.0.0.1 fastapi.app
+   ```
+
+6. **Start the Minikube tunnel** (in a separate terminal):
+   ```
+   minikube tunnel
+   ```
+
+7. **Access the application**:
+   
+   The application will be accessible at:
+   - http://fastapi.app/health - Health check endpoint
+   - http://fastapi.app/hello - Hello World endpoint
+   - http://fastapi.app/docs - Swagger UI documentation
+
+### Cleaning Up
+
+1. **Delete the Kubernetes resources**:
+   ```
+   kubectl delete -f k8s/
+   ```
+
+2. **Stop the Minikube tunnel** (press Ctrl+C in the terminal running the tunnel)
+
+3. **Stop Minikube** (optional):
+   ```
+   minikube stop
