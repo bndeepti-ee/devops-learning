@@ -162,13 +162,13 @@ docker stop fastapi-container && docker rm fastapi-container
 3. **Stop Minikube** (optional):
    ```
    minikube stop
-```
+   ```
 
-### Automation Scripts
+## Automation Scripts
 
 For convenience, this project includes automation scripts to simplify the deployment and cleanup process:
 
-#### Deployment
+### Deployment
 
 You can deploy the entire application to Kubernetes with a single command using the provided script:
 
@@ -185,7 +185,7 @@ This script automates all the steps mentioned above, including:
 - Starting the Minikube tunnel
 - Waiting for the deployment to be ready
 
-#### Cleanup
+### Cleanup
 
 Similarly, you can clean up the deployment with a single command:
 
