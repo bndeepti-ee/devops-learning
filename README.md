@@ -46,7 +46,6 @@ These documentation pages are automatically generated based on your API routes a
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/hello` | GET | Returns a "Hello World" message |
 | `/health` | GET | Returns the health status of the application with a UTC timestamp |
 
 ## Development
@@ -147,7 +146,6 @@ docker stop fastapi-container && docker rm fastapi-container
    
    The application will be accessible at:
    - http://fastapi.app/health - Health check endpoint
-   - http://fastapi.app/hello - Hello World endpoint
    - http://fastapi.app/docs - Swagger UI documentation
 
 ### Cleaning Up

@@ -76,7 +76,6 @@ kubectl wait --for=condition=available --timeout=300s deployment/fastapi-app
 echo "===== Deployment Complete ====="
 echo "Your application is now accessible at:"
 echo "- http://fastapi.app/health - Health check endpoint"
-echo "- http://fastapi.app/hello - Hello World endpoint"
 echo "- http://fastapi.app/docs - Swagger UI documentation"
 echo ""
 echo "To clean up the deployment, run: ./cleanup_app.sh"

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import hello_world, health_check
+from app.routers import health_check
 
 app = FastAPI(
     title="FastAPI API",
@@ -7,7 +7,6 @@ app = FastAPI(
     version="0.1.0"
 )
 
-app.include_router(hello_world.router)
 app.include_router(health_check.router)
 
 if __name__ == "__main__":
