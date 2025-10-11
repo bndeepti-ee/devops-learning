@@ -22,6 +22,7 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+reports/
 
 # Environment variables
 .env

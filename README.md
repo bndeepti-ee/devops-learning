@@ -52,9 +52,21 @@ These documentation pages are automatically generated based on your API routes a
 
 ### Running Tests
 
+You can run tests using pytest:
+
 ```
 pytest
 ```
+
+For generating test reports with coverage:
+
+```
+./scripts/run_tests.sh
+```
+
+This will generate:
+- HTML test reports at `reports/tests/report.html`
+- Coverage reports at `reports/coverage/index.html`
 
 ## Docker
 
@@ -171,7 +183,7 @@ For convenience, this project includes automation scripts to simplify the deploy
 You can deploy the entire application to Kubernetes with a single command using the provided script:
 
 ```
-./run_app.sh
+./scripts/run_app.sh
 ```
 
 This script automates all the steps mentioned above, including:
@@ -188,7 +200,7 @@ This script automates all the steps mentioned above, including:
 Similarly, you can clean up the deployment with a single command:
 
 ```
-./cleanup_app.sh
+./scripts/cleanup_app.sh
 ```
 
 This script will:
