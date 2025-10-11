@@ -15,3 +15,12 @@ jobs:
 
       - name: Run tests
         run: ./scripts/run_tests.sh
+        
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: |
+            reports/tests/
+            reports/coverage/
+          retention-days: 1
