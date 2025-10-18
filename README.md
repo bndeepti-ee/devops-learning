@@ -197,7 +197,7 @@ This script automates all the steps mentioned above, including:
 
 ### Cleanup
 
-Similarly, you can clean up the deployment with a single command:
+Similarly you can clean up the deployment with a single command:
 
 ```
 ./scripts/cleanup_app.sh
