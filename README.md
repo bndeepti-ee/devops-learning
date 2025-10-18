@@ -75,7 +75,7 @@ This will generate:
 You can build a Docker image for this application using the provided Dockerfile:
 
 ```
-docker build -t fastapi-app .
+docker build -t devops-learning-app .
 ```
 
 ### Running the Docker Container
@@ -83,14 +83,14 @@ docker build -t fastapi-app .
 Once the image is built, you can run the application in a Docker container:
 
 ```
-docker run -d -p 8000:8000 --name fastapi-container fastapi-app
+docker run -d -p 8000:8000 --name devops-learning-container devops-learning-app
 ```
 
 This will:
 - Run the container in detached mode (`-d`)
 - Map port 8000 of the container to port 8000 on your host (`-p 8000:8000`)
-- Name the container "fastapi-container" (`--name fastapi-container`)
-- Use the "fastapi-app" image we built earlier
+- Name the container "devops-learning-container" (`--name devops-learning-container`)
+- Use the "devops-learning-app" image we built earlier
 
 ### Accessing the Application
 
@@ -101,7 +101,7 @@ The application will be accessible at `http://localhost:8000`, just like when ru
 You can view the logs from the container with:
 
 ```
-docker logs fastapi-container
+docker logs devops-learning-container
 ```
 
 ### Stopping the Container
@@ -109,7 +109,7 @@ docker logs fastapi-container
 To stop and remove the container:
 
 ```
-docker stop fastapi-container && docker rm fastapi-container
+docker stop devops-learning-container && docker rm devops-learning-container
 ```
 
 ## Kubernetes Deployment
@@ -129,7 +129,7 @@ docker stop fastapi-container && docker rm fastapi-container
 
 2. **Build the Docker image**:
    ```
-   docker build -t fastapi-app:latest .
+   docker build -t devops-learning-app:latest .
    ```
 
 3. **Apply the Kubernetes configurations**:
@@ -146,7 +146,7 @@ docker stop fastapi-container && docker rm fastapi-container
    
    Add the following line to your `/etc/hosts` file:
    ```
-   127.0.0.1 fastapi.app
+   127.0.0.1 devops-learning.app
    ```
 
 6. **Start the Minikube tunnel** (in a separate terminal):
@@ -157,8 +157,8 @@ docker stop fastapi-container && docker rm fastapi-container
 7. **Access the application**:
    
    The application will be accessible at:
-   - http://fastapi.app/health - Health check endpoint
-   - http://fastapi.app/docs - Swagger UI documentation
+   - http://devops-learning.app/health - Health check endpoint
+   - http://devops-learning.app/docs - Swagger UI documentation
 
 ### Cleaning Up
 
