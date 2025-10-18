@@ -75,7 +75,7 @@ This will generate:
 You can build a Docker image for this application using the provided Dockerfile:
 
 ```
-docker build -t devops-learning-app .
+docker build -t devops-learning .
 ```
 
 ### Running the Docker Container
@@ -83,14 +83,14 @@ docker build -t devops-learning-app .
 Once the image is built, you can run the application in a Docker container:
 
 ```
-docker run -d -p 8000:8000 --name devops-learning-container devops-learning-app
+docker run -d -p 8000:8000 devops-learning
 ```
 
 This will:
 - Run the container in detached mode (`-d`)
 - Map port 8000 of the container to port 8000 on your host (`-p 8000:8000`)
 - Name the container "devops-learning-container" (`--name devops-learning-container`)
-- Use the "devops-learning-app" image we built earlier
+- Use the "devops-learning" image we built earlier
 
 ### Accessing the Application
 
@@ -129,7 +129,7 @@ docker stop devops-learning-container && docker rm devops-learning-container
 
 2. **Build the Docker image**:
    ```
-   docker build -t devops-learning-app:latest .
+   docker build -t devops-learning:latest .
    ```
 
 3. **Apply the Kubernetes configurations**:
