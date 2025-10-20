@@ -1,18 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: fastapi-app-ingress
+  name: devops-learning-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: fastapi.app
+  - host: devops-learning.app
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: fastapi-app-service
+            name: devops-learning-service
             port:
               number: 80

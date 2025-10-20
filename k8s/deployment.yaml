@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fastapi-app
+  name: devops-learning
   labels:
-    app: fastapi-app
+    app: devops-learning
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fastapi-app
+      app: devops-learning
   template:
     metadata:
       labels:
-        app: fastapi-app
+        app: devops-learning
     spec:
       containers:
-      - name: fastapi-app
-        image: fastapi-app:latest
+      - name: devops-learning
+        image: bndeepti/devops-learning
         imagePullPolicy: Never  # Use local image as specified in requirements
         ports:
         - containerPort: 8000

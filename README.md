@@ -83,14 +83,14 @@ docker build -t devops-learning .
 Once the image is built, you can run the application in a Docker container:
 
 ```
-docker run -d -p 8000:8000 devops-learning
+docker run -d -p 8000:8000 --name devops-learning devops-learning
 ```
 
 This will:
 - Run the container in detached mode (`-d`)
 - Map port 8000 of the container to port 8000 on your host (`-p 8000:8000`)
-- Name the container "devops-learning-container" (`--name devops-learning-container`)
-- Use the "devops-learning" image we built earlier
+- Name the container "devops-learning" (`--name devops-learning`)
+- Use the `devops-learning` image we built earlier
 
 ### Accessing the Application
 
@@ -101,7 +101,7 @@ The application will be accessible at `http://localhost:8000`, just like when ru
 You can view the logs from the container with:
 
 ```
-docker logs devops-learning-container
+docker logs devops-learning
 ```
 
 ### Stopping the Container
@@ -109,7 +109,7 @@ docker logs devops-learning-container
 To stop and remove the container:
 
 ```
-docker stop devops-learning-container && docker rm devops-learning-container
+docker stop devops-learning && docker rm devops-learning
 ```
 
 ## Kubernetes Deployment
@@ -127,9 +127,10 @@ docker stop devops-learning-container && docker rm devops-learning-container
    minikube start
    ```
 
-2. **Build the Docker image**:
+2. **Pull the Docker image and Load to Minikube**:
    ```
-   docker build -t devops-learning:latest .
+   docker pull bndeepti/devops-learning .
+   minikube image load devops-learning:latest
    ```
 
 3. **Apply the Kubernetes configurations**:
