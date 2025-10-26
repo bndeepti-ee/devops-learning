@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Stage 2: Runtime
 FROM python:3.11-slim
 
+# Install curl for health checks
+RUN apt-get update && apt-get install -y curl
+
 # Set working directory
 WORKDIR /app
 
@@ -42,4 +45,10 @@ EXPOSE 8000
 
 # Command to run the application using uvicorn directly
 # --host 0.0.0.0 binds to all network interfaces, making the app accessible from outside the container
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Add health check to verify the application is running properly
+# The health check will make an HTTP request to the /health endpoint every 3 seconds
+# It will timeout after 5 seconds and retry 1 time before marking the container as unhealthy
+HEALTHCHECK --interval=3s --timeout=5s --start-period=3s --retries=1 \
+  CMD curl -f http://localhost:8000/health || exit 1
