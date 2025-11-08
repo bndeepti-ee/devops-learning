@@ -129,7 +129,7 @@ docker stop devops-learning && docker rm devops-learning
 
 2. **Pull the Docker image and Load to Minikube**:
    ```
-   docker pull bndeepti/devops-learning .
+   docker pull bndeepti/devops-learning:latest
    minikube image load devops-learning:latest
    ```
 

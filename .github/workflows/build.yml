@@ -45,3 +45,15 @@ jobs:
 
       - name: Push the Docker image
         run: docker push bndeepti/devops-learning:latest
+
+  deploy:
+    needs: docker
+    if: github.ref == 'refs/heads/main'
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy the application
+        run: ./scripts/run_app.sh

@@ -3,7 +3,7 @@
 # Exit on error
 set -e
 
-echo "===== FastAPI Application Kubernetes Deployment ====="
+echo "===== Devops Learning Application Kubernetes Deployment ====="
 
 # Check if minikube is installed
 if ! command -v minikube &> /dev/null; then
@@ -31,9 +31,13 @@ else
     echo "Minikube is already running."
 fi
 
-# Build the Docker image
-echo "Building Docker image..."
-docker build -t fastapi-app:latest .
+# Pull the Docker image
+echo "Pulling Docker image..."
+docker pull bndeepti/devops-learning:latest
+
+# Load the Docker image into Minikube
+echo "Loading Docker image into Minikube..."
+minikube image load bndeepti/devops-learning:latest
 
 # Apply Kubernetes configurations
 echo "Applying Kubernetes configurations..."
@@ -42,18 +46,18 @@ kubectl apply -f k8s/
 # Enable the Ingress addon in Minikube if not already enabled
 if ! minikube addons list | grep -q "ingress: enabled"; then
     echo "Enabling Ingress addon..."
-    minikube addons enable ingress
+      minikube addons enable ingress
 else
     echo "Ingress addon is already enabled."
 fi
 
 # Check if the host entry exists in /etc/hosts
-if ! grep -q "127.0.0.1 fastapi.app" /etc/hosts; then
-    echo "Adding fastapi.app to /etc/hosts..."
+if ! grep -q "127.0.0.1 devops-learning.app" /etc/hosts; then
+    echo "Adding devops-learning.app to /etc/hosts..."
     echo "You may be prompted for your password to modify /etc/hosts"
-    sudo sh -c 'echo "127.0.0.1 fastapi.app" >> /etc/hosts'
+    sudo sh -c 'echo "127.0.0.1 devops-learning.app" | sudo tee -a /etc/hosts > /dev/null'
 else
-    echo "Host entry for fastapi.app already exists in /etc/hosts."
+    echo "Host entry for devops-learning.app already exists in /etc/hosts."
 fi
 
 # Start the Minikube tunnel in the background
@@ -71,11 +75,11 @@ fi
 
 # Wait for the deployment to be ready
 echo "Waiting for deployment to be ready..."
-kubectl wait --for=condition=available --timeout=300s deployment/fastapi-app
+kubectl wait --for=condition=available --timeout=300s deployment/devops-learning
 
 echo "===== Deployment Complete ====="
 echo "Your application is now accessible at:"
-echo "- http://fastapi.app/health - Health check endpoint"
-echo "- http://fastapi.app/docs - Swagger UI documentation"
+echo "- http://devops-learning.app/health - Health check endpoint"
+echo "- http://devops-learning.app/docs - Swagger UI documentation"
 echo ""
 echo "To clean up the deployment, run: ./scripts/cleanup_app.sh"

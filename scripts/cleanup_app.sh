@@ -14,12 +14,12 @@ echo "Stopping Minikube tunnel..."
 pkill -f "minikube tunnel" || echo "Minikube tunnel is not running."
 
 # Ask if user wants to stop Minikube
-read -p "Do you want to stop Minikube? (y/n): " STOP_MINIKUBE
-if [[ $STOP_MINIKUBE == "y" || $STOP_MINIKUBE == "Y" ]]; then
-    echo "Stopping Minikube..."
-    minikube stop
-else
-    echo "Minikube is still running."
-fi
+#read -p "Do you want to stop Minikube? (y/n): " STOP_MINIKUBE
+#if [[ $STOP_MINIKUBE == "y" || $STOP_MINIKUBE == "Y" ]]; then
+#    echo "Stopping Minikube..."
+#    minikube stop
+#else
+#    echo "Minikube is still running."
+#fi
 
 echo "===== Cleanup Complete ====="
