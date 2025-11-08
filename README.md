@@ -44,9 +44,10 @@ These documentation pages are automatically generated based on your API routes a
 
 ## Available Endpoints
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
+| Endpoint  | Method | Description                                                       |
+|-----------|--------|-------------------------------------------------------------------|
 | `/health` | GET | Returns the health status of the application with a UTC timestamp |
+| `/docs`   | GET | Returns the swagger documentation                                 |
 
 ## Development
 
