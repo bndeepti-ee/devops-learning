@@ -47,7 +47,7 @@ These documentation pages are automatically generated based on your API routes a
 | Endpoint  | Method | Description                                                       |
 |-----------|--------|-------------------------------------------------------------------|
 | `/health` | GET | Returns the health status of the application with a UTC timestamp |
-| `/docs`   | GET | Returns the swagger documentation                                 |
+| `/docs`   | GET | Returns the swagger documentation                              |
 
 ## Development
 
