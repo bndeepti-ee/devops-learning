@@ -57,3 +57,18 @@ jobs:
 
       - name: Deploy the application
         run: ./scripts/run_app.sh
+
+  smoke-tests:
+    needs: deploy
+    if: github.ref == 'refs/heads/main'
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run smoke tests
+        run: python3 tests/smoke_tests.py
