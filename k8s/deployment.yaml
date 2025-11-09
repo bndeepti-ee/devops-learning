@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: devops-learning
-        image: bndeepti/devops-learning
-        imagePullPolicy: Never  # Use local image as specified in requirements
+        image: bndeepti/devops-learning:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
         resources:

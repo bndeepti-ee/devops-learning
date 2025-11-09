@@ -1,10 +1,8 @@
 #!/bin/bash
 
-# Create directories for reports if they don't exist
 mkdir -p reports/coverage
 mkdir -p reports/tests
 
-# Run pytest with coverage and generate reports
 pytest \
     --cov=app \
     --cov-report=html:reports/coverage \
