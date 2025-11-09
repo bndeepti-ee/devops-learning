@@ -3,7 +3,7 @@ from app.routers import health_check
 
 app = FastAPI(
     title="FastAPI API",
-    description="A simple FastAPI application",
+    description="A simple FastAPI web application",
     version="0.1.0"
 )
 
