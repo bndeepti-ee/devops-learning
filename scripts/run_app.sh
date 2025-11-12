@@ -28,7 +28,10 @@ else
 fi
 
 echo "Applying Kubernetes configurations..."
-kubectl apply -f k8s/
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/ingress.yaml
 
 if ! minikube addons list | grep -q "ingress: enabled"; then
     echo "Enabling Ingress addon..."
@@ -55,7 +58,7 @@ else
 fi
 
 echo "Waiting for deployment to be ready..."
-kubectl wait --for=condition=available --timeout=300s deployment/devops-learning
+kubectl wait --for=condition=available --timeout=300s deployment/devops-learning -n devops-learning
 
 echo "===== Deployment Complete ====="
 echo "Your application is now accessible at:"
