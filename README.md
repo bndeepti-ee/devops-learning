@@ -182,7 +182,7 @@ For convenience, this project includes automation scripts to simplify the deploy
 
 ### Deployment
 
-You can deploy the entire application to Kubernetes with a single command using the provided script:
+You can deploy the k8s application to Kubernetes with a single command:
 
 ```
 ./scripts/run_app.sh
@@ -197,12 +197,24 @@ This script automates all the steps mentioned above, including:
 - Starting the Minikube tunnel
 - Waiting for the deployment to be ready
 
+You can deploy the helm application to Kubernetes with a single command:
+
+```
+helm install devops-learning helm
+```
+
 ### Cleanup
 
-Similarly, you can clean up the deployment with a single command:
+Similarly, you can clean up the k8s deployment with a single command:
 
 ```
 ./scripts/cleanup_app.sh
+```
+
+And you can cleanup the helm deployment with a single command:
+
+```
+helm uninstall devops-learning
 ```
 
 This script will:
