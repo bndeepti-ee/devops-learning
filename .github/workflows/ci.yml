@@ -64,7 +64,7 @@ jobs:
   deploy-helm:
     needs: docker
     if: github.ref == 'refs/heads/main'
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
@@ -76,7 +76,7 @@ jobs:
   smoke-tests:
     needs: deploy-helm
     if: github.ref == 'refs/heads/main'
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
