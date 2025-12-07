@@ -1,20 +1,18 @@
-# Stage 1: Build dependencies
-FROM python:3.11-slim AS builder
+# Stage 1: Builder - Use base image for building dependencies
+FROM bndeepti/devops-base-image:latest AS builder
+
+# Install Python 3.11 with virtual environment support
+RUN apt-get update && apt-get install -y python3.11 python3.11-venv python3-pip
 
 # Set working directory
 WORKDIR /app
 
-# Copy requirements file
+# Install Python dependencies
 COPY requirements.txt .
+RUN python3.11 -m pip install --no-cache-dir -r requirements.txt
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Stage 2: Runtime
-FROM python:3.11-slim
-
-# Install curl for health checks
-RUN apt-get update && apt-get install -y curl
+# Stage 2: Runtime - Use base image again for runtime
+FROM bndeepti/devops-base-image:latest
 
 # Set working directory
 WORKDIR /app
@@ -25,8 +23,10 @@ WORKDIR /app
 # appuser: The name of the user account being created
 RUN adduser --disabled-password --gecos "" appuser
 
-# Copy installed packages from builder stage
-COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+# Copy Python and installed packages from builder stage
+COPY --from=builder /usr/bin/python3.11 /usr/bin/python3.11
+COPY --from=builder /usr/lib/python3.11 /usr/lib/python3.11
+COPY --from=builder /usr/local/lib/python3.11 /usr/local/lib/python3.11
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy only the application code
@@ -45,7 +45,7 @@ EXPOSE 8000
 
 # Command to run the application using uvicorn directly
 # --host 0.0.0.0 binds to all network interfaces, making the app accessible from outside the container
-ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["python3.11", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # Add health check to verify the application is running properly
 # The health check will make an HTTP request to the /health endpoint every 3 seconds
