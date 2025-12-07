@@ -41,12 +41,23 @@ RUN curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-li
 
 # Create a simple script to enable minikube ingress addon
 RUN echo '#!/bin/bash\n\
+# Start Minikube if not already running\n\
+if ! minikube status | grep -q "Running"; then\n\
+    echo "Starting Minikube..."\n\
+    minikube start --driver=docker\n\
+else\n\
+    echo "Minikube is already running."\n\
+fi\n\
+\n\
+# Enable ingress addon if not already enabled\n\
 if ! minikube addons list | grep -q "ingress: enabled"; then\n\
     echo "Enabling Ingress addon..."\n\
     minikube addons enable ingress\n\
 else\n\
     echo "Ingress addon is already enabled."\n\
 fi\n\
+\n\
+echo "Minikube is ready!"\n\
 \n\
 exec "$@"' > /usr/local/bin/docker-entrypoint.sh \
     && chmod +x /usr/local/bin/docker-entrypoint.sh
