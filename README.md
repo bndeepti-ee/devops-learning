@@ -113,6 +113,47 @@ To stop and remove the container:
 docker stop devops-learning && docker rm devops-learning
 ```
 
+## DevOps Base Image
+
+This project includes a base Docker image with all the necessary DevOps tools pre-installed, making it easy to run your application in any environment.
+
+### Included Tools
+
+- Docker
+- kubectl
+- Helm
+- Minikube (with ingress addon enabled)
+
+### Building the Base Image
+
+You can build the base image using the provided script:
+
+```
+./scripts/build_base_image.sh
+```
+
+This will:
+- Build the Docker image with all required tools
+- Tag the image for your repository
+- Push the image to your Docker repository
+
+### Using the Base Image
+
+You can use the base image in two ways:
+
+1. **As a base for your application Dockerfile**:
+   ```dockerfile
+   FROM bndeepti/devops-base-image:latest
+   
+   # Add your application-specific instructions here
+   ```
+
+2. **As a development environment**:
+   ```bash
+   docker run -it --rm -v $(pwd):/workspace bndeepti/devops-base-image:latest
+   ```
+   This will mount your current directory to the container's workspace directory.
+
 ## Kubernetes Deployment
 
 ### Prerequisites
