@@ -241,8 +241,35 @@ This script automates all the steps mentioned above, including:
 You can deploy the helm application to Kubernetes with a single command:
 
 ```
-helm install devops-learning helm
+helm install devops-learning helm --namespace devops-learning --create-namespace
 ```
+
+You can deploy the application using Terraform as follows:
+#### Prerequisites
+
+- Terraform 1.0.0+
+- Helm 3.x
+
+#### Deploying with Terraform
+
+1. **Initialize Terraform**:
+   ```
+   cd terraform
+   terraform init
+   ```
+
+2. **Plan the deployment**:
+   ```
+   terraform plan
+   ```
+   This will show you what resources will be created.
+
+3. **Apply the configuration**:
+   ```
+   terraform apply
+   ```
+   When prompted, type `yes` to confirm the deployment.
+
 
 ### Cleanup
 
@@ -252,13 +279,23 @@ Similarly, you can clean up the k8s deployment with a single command:
 ./scripts/cleanup_app.sh
 ```
 
-And you can cleanup the helm deployment with a single command:
+This script will:
+- Delete all Kubernetes resources
+- Stop the Minikube tunnel
+- Optionally stop Minikube (based on your choice)
+
+
+You can cleanup the helm deployment with a single command:
 
 ```
 helm uninstall devops-learning
 ```
 
-This script will:
-- Delete all Kubernetes resources
-- Stop the Minikube tunnel
-- Optionally stop Minikube (based on your choice)
+
+You can remove all resources created by Terraform:
+
+```
+terraform destroy
+```
+
+When prompted, type `yes` to confirm the deletion.

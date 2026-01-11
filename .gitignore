@@ -32,3 +32,14 @@ reports/
 .vscode/
 *.swp
 *.swo
+
+# Terraform files
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Ignore lock files
+.terraform.lock.hcl
