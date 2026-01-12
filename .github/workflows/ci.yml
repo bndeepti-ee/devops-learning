@@ -58,7 +58,7 @@ jobs:
 #      - name: Checkout code
 #        uses: actions/checkout@v4
 #
-#      - name: Deploy the application
+#      - name: Deploy the application using a script
 #        run: ./scripts/run_app.sh
 
   deploy-helm:
@@ -70,7 +70,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy the application
+      - name: Deploy the application using Helm
         run: helm install devops-learning helm --namespace devops-learning --create-namespace
 
   smoke-tests:
