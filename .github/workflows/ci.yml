@@ -101,6 +101,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Terraform Init
+        run: |
+          cd terraform
+          terraform init
+          
       - name: Terraform Apply
         run: |
           cd terraform
