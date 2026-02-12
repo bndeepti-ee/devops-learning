@@ -1,4 +1,4 @@
-resource "aws_instance" "deepti-devops-ec2" {
+resource "aws_instance" "dee-devops-ec2" {
   ami                         = var.ami
   instance_type               = var.instance_type
   subnet_id                   = var.subnet_id
@@ -6,6 +6,4 @@ resource "aws_instance" "deepti-devops-ec2" {
   associate_public_ip_address = var.associate_public_ip_address
   key_name                    = var.key_name
   iam_instance_profile        = var.iam_instance_profile
-  user_data                   = var.user_data
 }
-

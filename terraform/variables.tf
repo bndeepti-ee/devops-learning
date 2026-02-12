@@ -25,7 +25,7 @@ variable "public_subnet_cidr" {
 variable "security_group_name" {
   description = "Name of the security group."
   type        = string
-  default     = "deepti-devops-security-group"
+  default     = "dee-devops-security-group"
 }
 
 variable "security_group_description" {
@@ -57,33 +57,3 @@ variable "iam_instance_profile" {
   type        = string
   default     = "deepti-ec2-pull-image"
 }
-
-variable "user_data" {
-  description = "User data script to run on instance boot."
-  type        = string
-  default     = <<-EOF
-#!/bin/bash
-
-# Update system packages
-sudo dnf update -y
-
-# Install Docker
-sudo dnf install -y docker
-sudo systemctl start docker
-sudo systemctl enable docker
-
-# Allow ec2-user to run docker
-sudo usermod -aG docker ec2-user
-
-# Login to ECR (region MUST match)
-aws ecr get-login-password --region eu-north-1 \
-  | docker login --username AWS --password-stdin 889772146711.dkr.ecr.eu-north-1.amazonaws.com
-
-# Pull image
-docker pull 889772146711.dkr.ecr.eu-north-1.amazonaws.com/deepti:aws-devops-learning
-
-# Run container
-docker run -d -p 8000:8000 889772146711.dkr.ecr.eu-north-1.amazonaws.com/deepti:aws-devops-learning
-EOF
-}
-

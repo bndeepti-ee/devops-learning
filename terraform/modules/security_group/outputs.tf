@@ -1,5 +1,5 @@
 output "security_group_id" {
   description = "Security group ID."
-  value       = aws_security_group.deepti-devops-security-group.id
+  value       = aws_security_group.dee-devops-security-group.id
 }
 

@@ -1,0 +1,8 @@
+---
+- name: Configure EC2 with docker and install container
+  hosts: ec2
+  become: true
+
+  roles:
+    - docker
+    - app

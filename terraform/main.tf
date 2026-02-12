@@ -50,5 +50,4 @@ module "ec2" {
   associate_public_ip_address = true
   key_name                    = var.key_name
   iam_instance_profile        = var.iam_instance_profile
-  user_data                   = var.user_data
 }

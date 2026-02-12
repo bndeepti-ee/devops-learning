@@ -1,0 +1,20 @@
+- name: Login to ECR
+  shell: |
+    aws ecr get-login-password --region eu-north-1 \
+    | docker login --username AWS --password-stdin 889772146711.dkr.ecr.eu-north-1.amazonaws.com
+  args:
+    executable: /bin/bash
+
+- name: Pull Docker image
+  docker_image:
+    name: 889772146711.dkr.ecr.eu-north-1.amazonaws.com/deepti
+    tag: aws-devops-learning
+    source: pull
+
+- name: Run container
+  docker_container:
+    name: app
+    image: 889772146711.dkr.ecr.eu-north-1.amazonaws.com/deepti:aws-devops-learning
+    state: started
+    ports:
+      - "8000:8000"
