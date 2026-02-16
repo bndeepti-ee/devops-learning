@@ -3,6 +3,17 @@ name: Build
 on: push
 
 jobs:
+  security-check:
+    runs-on: ubuntu
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for accurate scans
+
+      - name: Run Trivy scan on repo
+        uses: aquasecurity/trivy-action@master
+
   build:
     runs-on: self-hosted
 
