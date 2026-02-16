@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 0 # Fetch all history for accurate scans
 
       - name: Run Trivy scan on repo
-        uses: aquasecurity/trivy-action@v0.20.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           scan-type: 'fs'
           scan-ref: '.'
