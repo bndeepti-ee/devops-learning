@@ -13,6 +13,11 @@ jobs:
 
       - name: Run Trivy scan on repo
         uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
 
   build:
     runs-on: self-hosted
